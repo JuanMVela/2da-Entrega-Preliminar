@@ -1,0 +1,224 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "SegundaEntrega",
+    "dateExported": "2023-02-15T02:14:01.540Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "6f5acfd2-f3aa-40b2-890d-3ab9483e3b60",
+            "name": "Productos",
+            "containerId": "",
+            "created": "2023-02-15T01:57:37.702Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b5594ed0-a5c3-4f1f-ac44-36f1e160f012",
+            "name": "ProductCart",
+            "containerId": "",
+            "created": "2023-02-15T01:57:37.703Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "f8d6e1c9-9608-40bb-896b-69b05fffda9e",
+            "name": "Carrito",
+            "containerId": "",
+            "created": "2023-02-15T01:57:37.704Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "2b77e8f4-400a-4051-9c02-74abff245244",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "6f5acfd2-f3aa-40b2-890d-3ab9483e3b60",
+            "name": "Ver todos los productos",
+            "url": "http://localhost:8080/productos",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-02-15T01:57:37.702Z",
+            "modified": "2023-02-15T01:57:37.702Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "abfbf59f-b939-4b52-8fe8-a115d782f657",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "6f5acfd2-f3aa-40b2-890d-3ab9483e3b60",
+            "name": "Buscar producto por id",
+            "url": "http://localhost:8080/productos/",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-02-15T01:57:37.703Z",
+            "modified": "2023-02-15T01:57:37.703Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1632db94-a609-4fb3-9030-977c7a80f765",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "6f5acfd2-f3aa-40b2-890d-3ab9483e3b60",
+            "name": "Crear producto",
+            "url": "http://localhost:8080/productos",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-02-15T01:57:37.704Z",
+            "modified": "2023-02-15T02:01:09.059Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"3D\",\n    \"description\": \"snacks\",\n    \"price\": 600,\n    \"thumbnail\": \"url3D\",\n    \"code\": 14,\n    \"stock\": 2\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a859dc89-6292-46c1-a689-34c908c45392",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "6f5acfd2-f3aa-40b2-890d-3ab9483e3b60",
+            "name": "Actualizar por id",
+            "url": "http://localhost:8080/productos/",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-02-15T01:57:37.705Z",
+            "modified": "2023-02-15T01:57:37.705Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "49f18c15-2e63-405e-8e89-c1687e76f69a",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "6f5acfd2-f3aa-40b2-890d-3ab9483e3b60",
+            "name": "Elimar producto por id",
+            "url": "http://localhost:8080/productos/",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-02-15T01:57:37.706Z",
+            "modified": "2023-02-15T01:57:37.706Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9f471f9d-7e7b-47a4-8bca-699d17bf6f3c",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "b5594ed0-a5c3-4f1f-ac44-36f1e160f012",
+            "name": "Ver productoCart",
+            "url": "http://localhost:8080/cart",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-02-15T01:57:37.707Z",
+            "modified": "2023-02-15T01:57:37.707Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d83845ef-641e-4197-b0fe-071f9c8436a5",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "b5594ed0-a5c3-4f1f-ac44-36f1e160f012",
+            "name": "Cargar productosCart",
+            "url": "http://localhost:8080/cart",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-02-15T01:57:37.708Z",
+            "modified": "2023-02-15T02:04:21.574Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{ \n  \"producto\": \"Lays\",\n    \"quantity\": \"30\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4424a1e9-f792-4712-ae65-1a95e156f2a1",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "f8d6e1c9-9608-40bb-896b-69b05fffda9e",
+            "name": "Ver Todos los carritos",
+            "url": "http://localhost:8080/carrito",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-02-15T01:57:37.709Z",
+            "modified": "2023-02-15T01:57:37.709Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "89b0fc7e-4760-4b48-9ca4-4caa0748a6e3",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "f8d6e1c9-9608-40bb-896b-69b05fffda9e",
+            "name": "buscar carrito id",
+            "url": "http://localhost:8080/carrito/63ec285a08bdd5402d417672",
+            "method": "GET",
+            "sortNum": 65000,
+            "created": "2023-02-15T01:57:37.710Z",
+            "modified": "2023-02-15T01:57:37.710Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a238e75b-3680-4154-82ed-3c5d49c5b70b",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "f8d6e1c9-9608-40bb-896b-69b05fffda9e",
+            "name": "Crear Carrito",
+            "url": "http://localhost:8080/carrito",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-02-15T01:57:37.711Z",
+            "modified": "2023-02-15T01:57:37.711Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3e8a9603-9845-41e9-8f15-55496316f3c6",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "f8d6e1c9-9608-40bb-896b-69b05fffda9e",
+            "name": "Meter en objetos en el carrito",
+            "url": "http://localhost:8080/carrito/carrito/63ec3dc7c0eaed241e9ec74b/producto/63ec3d8c930ba0bc5cfe58c0",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2023-02-15T01:57:37.712Z",
+            "modified": "2023-02-15T02:07:31.657Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{ \n  \"articulos\": \"lays\",\n  \"quantity\": \"80\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6a31800f-2b57-40cd-9e4c-a4188c670bc1",
+            "colId": "8326c38d-3880-42e1-97c3-3a5ecf9668c3",
+            "containerId": "f8d6e1c9-9608-40bb-896b-69b05fffda9e",
+            "name": "Eliminar objetos en el carrito",
+            "url": "http://localhost:8080/carrito/eliminarproducto/carrito/63ec285a08bdd5402d417672/producto/63ec2a64f809a57318bd7fce",
+            "method": "PUT",
+            "sortNum": 90000,
+            "created": "2023-02-15T01:57:37.713Z",
+            "modified": "2023-02-15T01:57:37.713Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{ \n  \"articulos\": \"lays\",\n  \"quantity\": \"80\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

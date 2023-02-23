@@ -1,0 +1,16 @@
+<h1>Bienvenidos</h1>
+<h2>Los productos disponibles:</h2>
+<div>
+        {{#each products}}
+    <ul>
+        <li><h3>Nombre: {{title}}</h3></li>
+        <li>Description: {{description}}</li>
+        <li>Precio: {{price}}</li>
+        <li>Imagenes: {{thumbnail}}</li>
+        <li>Codigo: {{code}}</li>
+        <li>Stock: {{stock}}</li>
+        <li>ID: {{_id}}</li>
+    </ul>
+         {{/each}}
+         </br>
+</div>

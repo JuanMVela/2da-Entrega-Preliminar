@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "CocaCola",
+    "description": "Bebida",
+    "price": 300,
+    "thumbnail": "urlCocaCola",
+    "code": 10,
+    "stock": 2
+  },
+  {
+    "id": 2,
+    "title": "Speed",
+    "description": "Energizante",
+    "price": 200,
+    "thumbnail": "urlSpeed",
+    "code": 11,
+    "stock": 6
+  },
+  {
+    "id": 3,
+    "title": "Lays",
+    "description": "Snacks",
+    "price": 400,
+    "thumbnail": "urlLays",
+    "code": 12,
+    "stock": 2
+  },
+  {
+    "id": 4,
+    "title": "Block",
+    "description": "Chocolate",
+    "price": 400,
+    "thumbnail": "urlBlock",
+    "code": 13,
+    "stock": 2
+  },
+  {
+    "id": 5,
+    "title": "3D",
+    "description": "snacks",
+    "price": 600,
+    "thumbnail": "url3D",
+    "code": 14,
+    "stock": 2
+  }
+]

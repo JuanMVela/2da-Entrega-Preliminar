@@ -1,0 +1,144 @@
+<div><h1>Bienvenidos</h1>
+<div>
+    <h2>Agregar Productos:</h2>
+  <form class="formulario" method="GET">
+    <label for="nombre">Nombre: </label>
+    <input
+      id="nombre"
+      type="text"
+      placeholder="Ingrese un nombre"
+      name="nombre"
+    />
+    </br>
+    <label for="descripcion">Description: </label>
+    <input
+      id="descripcion"
+      type="text"
+      placeholder="Ingrese una Description"
+      name="descripcion"
+    />
+    </br>
+    <label for="precio">Precio: </label>
+    <input
+      id="precio"
+      type="text"
+      placeholder="Ingrese un Precio"
+      name="precio"
+    />
+    </br>
+    <label for="url">URL Imagenes: </label>
+    <input
+      id="url"
+      type="text"
+      placeholder="Ingrese la url de una imagen"
+      name="url"
+    />
+    </br>
+    <label for="codigo">Codigo: </label>
+    <input
+      id="codigo"
+      type="text"
+      placeholder="Ingrese un Codigo"
+      name="codigo"
+    />
+    </br>
+    <label for="stock">Stock: </label>
+    <input
+      id="stock"
+      type="text"
+      placeholder="Ingrese el Stock"
+      name="stock"
+    />
+    </br>
+    <button type="submit">Agregar</button>
+    <button type="reset">Limpiar</button>
+  </form>
+</div>
+<div>
+    <h2>Eliminar Producto:</h2>
+    <p>Debe ingresar el ID del producto que desea eliminar.</p>
+     <form class="formularioEliminar" method="GET">
+    <label for="idDelete">ID: </label>
+    <input
+      id="idDelete"
+      type="text"
+      placeholder="Ingrese el ID"
+      name="idDelete"
+    />
+    </br>
+    <button type="submit" id="botonGP">Eliminar</button>
+  </form>
+</div>
+
+<h2>Los productos disponibles en Tiempo Real</h2>
+<div id="productsRealTime">
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script >const socket = io.connect("/");
+  console.log("hola")
+  
+let formulario = document.querySelector(".formulario");
+let formularioEliminar = document.querySelector(".formularioEliminar");
+let productsRealTime = document.querySelector("#productsRealTime");
+
+// // Targets value Formualario "cargar productos"
+let title = document.querySelector("#nombre");
+let description = document.querySelector("#descripcion");
+let price = document.querySelector("#precio");
+let thumbnail = document.querySelector("#url");
+let code = document.querySelector("#codigo");
+let stock = document.querySelector("#stock");
+
+// // Target value Formualario "eliminar"
+// let IdDeleteProducto = document.querySelector("#idDelete");
+
+const cargaDeProductos = () => {
+  socket.on("cargaDeProductos", (data) => {
+    productsRealTime.innerHTML = "";
+
+    data.forEach((e) => {
+      productsRealTime.innerHTML += `<ul>
+            <li><h3>Nombre: ${e.title}</h3></li>
+            <li>Description: ${e.description} </li>
+            <li>Precio: ${e.price} </li>
+            <li>Imagenes: ${e.thumbnail} </li>
+            <li>Codigo: ${e.code} </li>
+            <li>Stock: ${e.stock} </li>
+            <li>ID: ${e._id} </li>
+         </ul>`;
+    });
+  });
+};
+cargaDeProductos();
+
+
+const nuevoProducto = () => {
+  const formulario = document
+  .querySelector(".formulario")
+  .addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let producto = {
+      title: document.querySelector("#nombre").value,
+      description: document.querySelector("#descripcion").value,
+      price: document.querySelector("#precio").value,
+      thumbnail: document.querySelector("#url").value,
+      code: document.querySelector("#codigo").value,      
+      stock: document.querySelector("#stock").value,
+    };
+    socket.emit("nuevoProducto", producto);
+});
+};
+
+socket.on("cargaDeProductos", cargaDeProductos());
+
+nuevoProducto();
+
+
+
+</script>
+
+
+
+
