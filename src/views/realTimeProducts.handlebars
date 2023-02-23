@@ -75,14 +75,16 @@
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
-<script >const socket = io.connect("/");
+
+<script >const socket = io();
   console.log("hola")
-  
+
+// Targets de Formualarios 
 let formulario = document.querySelector(".formulario");
 let formularioEliminar = document.querySelector(".formularioEliminar");
 let productsRealTime = document.querySelector("#productsRealTime");
 
-// // Targets value Formualario "cargar productos"
+// Targets value Formualario "cargar productos"
 let title = document.querySelector("#nombre");
 let description = document.querySelector("#descripcion");
 let price = document.querySelector("#precio");
@@ -90,9 +92,10 @@ let thumbnail = document.querySelector("#url");
 let code = document.querySelector("#codigo");
 let stock = document.querySelector("#stock");
 
-// // Target value Formualario "eliminar"
-// let IdDeleteProducto = document.querySelector("#idDelete");
+// Target value Formualario "eliminar"
+let IdDeleteProducto = document.querySelector("#idDelete");
 
+// Funcion VISUALIZAR productos en tiempo real
 const cargaDeProductos = () => {
   socket.on("cargaDeProductos", (data) => {
     productsRealTime.innerHTML = "";
@@ -110,32 +113,42 @@ const cargaDeProductos = () => {
     });
   });
 };
-cargaDeProductos();
 
-
+// Funcion AGREGAR nuevo producto con FORM
 const nuevoProducto = () => {
-  const formulario = document
-  .querySelector(".formulario")
-  .addEventListener("submit", (e) => {
+  formulario.onsubmit = (e) => {
     e.preventDefault();
 
-    let producto = {
-      title: document.querySelector("#nombre").value,
-      description: document.querySelector("#descripcion").value,
-      price: document.querySelector("#precio").value,
-      thumbnail: document.querySelector("#url").value,
-      code: document.querySelector("#codigo").value,      
-      stock: document.querySelector("#stock").value,
+    let productoNuevo = {
+      title: title.value,
+      description: description.value,
+      price: price.value,
+      thumbnail: thumbnail.value,
+      code: code.value,
+      stock: stock.value,
     };
-    socket.emit("nuevoProducto", producto);
-});
+
+    socket.emit("nuevoProducto", productoNuevo);
+  };
 };
 
-socket.on("cargaDeProductos", cargaDeProductos());
+// Funcion ELIMINAR producto con ID de FORM
+const eliminarProducto = () => {
+  formularioEliminar.onsubmit = (e) => {
+    e.preventDefault();
 
+    let id = IdDeleteProducto.value;
+    console.log(id)
+    socket.emit("eliminarProducto", id);
+  };
+};
+
+// Actualizar productos en tiempo real luego de AGREGAR/ELIMINAR
+socket.emit("cargaDeProductos", cargaDeProductos());
+
+cargaDeProductos();
 nuevoProducto();
-
-
+eliminarProducto();
 
 </script>
 

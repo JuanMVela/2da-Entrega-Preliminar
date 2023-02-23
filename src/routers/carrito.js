@@ -27,7 +27,7 @@ carrito.put("/carrito/:idcart/producto/:idproducto", async (req, res) => {
   const id_Cart = req.params.idcart;
   const id_producto = req.params.idproducto;
 
-  //seleccionamos al carrito
+  //seleccionamos el carrito
   const cartIdMongo = await cartModel.findOne({ _id: id_Cart });
   if (!cartIdMongo) {
     res.send("El carrito no existe");
@@ -38,41 +38,36 @@ carrito.put("/carrito/:idcart/producto/:idproducto", async (req, res) => {
   if (!productIdMongo) {
     res.send("El producto no existe");
   }
-  
-//FIltra solamente la ID de la Collecion Productos (productIdMongo)
+
+  //FIltra solamente la ID de la Collecion Productos (productIdMongo)
   const idMongoPro = productIdMongo._id;
-  
 
   let constPro = {
     IdProducto: idMongoPro,
     quantity: 1,
   };
 
-
   //revisamos si el carrito ya tiene el producto
   const verifyCart1 = cartIdMongo.articulos.find(
     (element) => element.IdProducto.toString() === idMongoPro.toString()
-  ); 
-    
+  );
 
   if (verifyCart1) {
-    cartIdMongo.articulos.map(
-      (element)=> {   if (element.IdProducto.toString() === idMongoPro.toString()) {
-        element.quantity++
-      }   
-      }      
-    );
+    cartIdMongo.articulos.map((element) => {
+      if (element.IdProducto.toString() === idMongoPro.toString()) {
+        element.quantity++;
+      }
+    });
     // Actualiza el carrito segun la ID pasada y luego los datos a actualizar
     await cartModel.updateOne({ _id: id_Cart }, cartIdMongo);
     res.send(cartIdMongo);
   } else {
-
     // se pushea los datos utilizando el modelo de Cart.model
     cartIdMongo.articulos.push({
       title: productIdMongo.title,
       ...constPro,
     });
-// se transcribe la informacion
+    // se transcribe la informacion
     await cartModel.updateOne({ _id: id_Cart }, cartIdMongo);
     res.send(cartIdMongo);
   }
@@ -107,13 +102,3 @@ carrito.put(
 );
 
 module.exports = carrito;
-
-// const generarID=()=>{
-
-//   const alumnos = this.leerArchivo()
-
-//   const ultimoID = alumnos.pop()
-
-//   if(ultimoID){ return ultimoID.id + 1  } else { return 1 }
-
-// }

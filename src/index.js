@@ -3,11 +3,8 @@ const routerProduct = require("./routers/routerProduct");
 const carrito = require("./routers/carrito");
 const viewsRouters = require("./routers/viewsRouter");
 
-// const productsRouter = require("./routers/productsRouter");
-
 // Modelos
 const { productModel } = require("./models/products.model");
-// const { cartModel } = require("../models/cart.model");
 
 const express = require("express");
 const app = express();
@@ -41,36 +38,38 @@ const httpServer = app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
 
-// websockets
+// Websockets
 const socketServer = new Server(httpServer);
 
 socketServer.on("connection", async (socket) => {
   console.log("nuevo cliente");
 
+  // Almacenar los "productos" desde MongoDB en una variable
   const products = await productModel.find().lean();
-  // console.log(products);
+
+  // Socket VISUALIZAR productos en tiempo real
   socket.emit("cargaDeProductos", products);
 
+  // Socket AGREGAR nuevo producto
   socket.on("nuevoProducto", async (data) => {
     let productoNuevo = { ...data };
     if (productoNuevo) {
       await productModel.create(productoNuevo);
     }
-    socket.emit("cargaDeProductos", products);
   });
-  // socket.on("eliminarProducto", (id) => {
-  //   if (id) {
-  //     productsJson = productsJson.filter((producto) => producto.id !== +id);
-  //     fs.writeFileSync(
-  //       "./database/productos.JSON",
-  //       JSON.stringify(productsJson)
-  //     );
 
-  //     res.send("El Producto ha sido eliminado");
-  //   } else {
-  //     res.status(404).send("El producto no existe");
-  //   }
-  // });
+  // Socket ELIMINAR producto con ID de FORM
+  socket.on("eliminarProducto", async (id) => {
+    if (id) {
+      await productModel.deleteOne({ _id: id });
+      // res.send(`Producto "${id}" eliminado`);
+    } else {
+      // res.status(404).send("El producto no existe");
+    }
+  });
+
+  // Socket ACTUALIZAR productos
+  socket.on("cargaDeProductos", (products) => {});
 });
 
 // Conexion a MongoDB
