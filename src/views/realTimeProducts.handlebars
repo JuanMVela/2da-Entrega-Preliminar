@@ -101,8 +101,9 @@ const cargaDeProductos = () => {
     productsRealTime.innerHTML = "";
 
     data.forEach((e) => {
-      productsRealTime.innerHTML += `<ul>
-            <li><h3>Nombre: ${e.title}</h3></li>
+      productsRealTime.innerHTML += `<ul style="background-color: gray;   
+    border:4px solid black;">
+            <li style="font-size:20px;"><h3>Nombre: ${e.title}</h3></li>
             <li>Description: ${e.description} </li>
             <li>Precio: ${e.price} </li>
             <li>Imagenes: ${e.thumbnail} </li>
@@ -136,15 +137,13 @@ const nuevoProducto = () => {
 const eliminarProducto = () => {
   formularioEliminar.onsubmit = (e) => {
     e.preventDefault();
-
     let id = IdDeleteProducto.value;
-    console.log(id)
     socket.emit("eliminarProducto", id);
   };
 };
 
 // Actualizar productos en tiempo real luego de AGREGAR/ELIMINAR
-socket.emit("cargaDeProductos", cargaDeProductos());
+socket.on("cargaDeProductos", cargaDeProductos());
 
 cargaDeProductos();
 nuevoProducto();

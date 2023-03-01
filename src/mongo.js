@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const { productModel } = require("./models/products.model");
 
-const dbMongoConnect = () => {
+const dbMongoConnect = async () => {
   const RUTADB = process.env.RUTA_DB;
-  console.log(RUTADB)
+  console.log(RUTADB);
   mongoose.set("strictQuery", true);
 
   mongoose.connect(RUTADB, (error) => {
@@ -12,6 +13,12 @@ const dbMongoConnect = () => {
       console.log("ERROR DE CONEXION");
     }
   });
+
+  const response = await productModel.paginate(
+    { description: "Bebida" },
+    { page: 2, limit: 2 }
+  );
+  // console.log(response);
 };
 
 module.exports = dbMongoConnect();
